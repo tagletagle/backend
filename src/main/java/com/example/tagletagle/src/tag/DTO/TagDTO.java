@@ -1,6 +1,5 @@
-package com.example.tagletagle.src.board.dto;
+package com.example.tagletagle.src.tag.DTO;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,5 +7,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class WriteCreateDTO {
+
+public class TagDTO {
+    private Long id;
+    private String name;
+
 }
