@@ -1,8 +1,6 @@
 package com.example.tagletagle.src.user.controller;
 
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.tagletagle.base.BaseException;
 import com.example.tagletagle.base.BaseResponse;
@@ -20,6 +18,17 @@ public class UserController {
 
 	private final UserService userService;
 
+	@GetMapping("/api/user/nickname/check")
+	public boolean nicknameDupCheck(@Valid @RequestParam String nickname){
+		try{
+			return userService.nicknameDupCheck(nickname);
+
+
+		}catch (BaseException e) {
+			return false;
+		}
+
+	}
 
 	@PatchMapping("/api/user/basic/info")
 	public BaseResponse<String> saveOrUpdateUserBasicInfo(@Valid @RequestBody UserBasicInfoDTO userBasicInfoDTO){
@@ -36,7 +45,6 @@ public class UserController {
 		}
 
 	}
-
 
 
 

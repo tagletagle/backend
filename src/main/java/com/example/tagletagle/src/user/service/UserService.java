@@ -18,6 +18,9 @@ public class UserService {
 	//유효성 검사
 	private final UserRepository userRepository;
 
+	public boolean nicknameDupCheck(String nickname){
+		return userRepository.existsUserEntityByNickname(nickname);
+	}
 
 	public void saveOrUpdateUserBasicInfo(Long userId, UserBasicInfoDTO userBasicInfoDTO) {
 
