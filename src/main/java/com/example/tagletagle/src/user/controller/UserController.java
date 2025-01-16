@@ -1,8 +1,8 @@
 package com.example.tagletagle.src.user.controller;
 
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.tagletagle.src.user.dto.UserProfileResponse;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.tagletagle.base.BaseException;
 import com.example.tagletagle.base.BaseResponse;
@@ -16,12 +16,13 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api/user")
 public class UserController {
 
 	private final UserService userService;
 
 
-	@PatchMapping("/api/user/basic/info")
+	@PatchMapping("/basic/info")
 	public BaseResponse<String> saveOrUpdateUserBasicInfo(@Valid @RequestBody UserBasicInfoDTO userBasicInfoDTO){
 		try{
 			Long userId = SecurityUtil.getCurrentUserId()
@@ -37,8 +38,11 @@ public class UserController {
 
 	}
 
-
-
-
+	//사용자 프로필 조회
+	@GetMapping("/{userId}/profile")
+	public ResponseEntity<UserProfileResponse> getUserProfile(@PathVariable Long userId){
+		UserProfileResponse userProfile = userService.getUserProfile(userId);
+		return ResponseEntity.ok(userProfile);
+	}
 
 }

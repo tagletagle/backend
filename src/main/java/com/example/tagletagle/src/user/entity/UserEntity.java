@@ -41,7 +41,7 @@ public class UserEntity extends BaseEntity {
 	@Column(nullable = true)
 	private String description;
 
-	//기본 정보 입력 시 적는 생년웡일
+	//기본 정보 입력 시 적는 생년월일
 	@Column(name = "birth_date", nullable = true)
 	private LocalDate birthDate;
 

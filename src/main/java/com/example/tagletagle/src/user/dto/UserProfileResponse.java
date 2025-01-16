@@ -10,14 +10,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
-@Setter
-@NoArgsConstructor
 @AllArgsConstructor
-public class UserBasicInfoDTO {
 
-	private String nickname;
-	private String description;
-	private LocalDate birthDate;
-	private Character gender;
 
+public class UserProfileResponse {
+    private Long id;
+    private String nickname;
+    private String description;
+    private Long follower_count;
+    private Long following_count;
+    private String profileImgUrl;
 }

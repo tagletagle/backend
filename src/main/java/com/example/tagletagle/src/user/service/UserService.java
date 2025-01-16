@@ -1,5 +1,6 @@
 package com.example.tagletagle.src.user.service;
 
+import com.example.tagletagle.src.user.dto.UserProfileResponse;
 import org.springframework.stereotype.Service;
 
 import com.example.tagletagle.base.BaseException;
@@ -33,5 +34,21 @@ public class UserService {
 
 		userRepository.save(user);
 
+	}
+
+	public UserProfileResponse getUserProfile(Long userId) {
+		return userRepository.findById(userId)
+				.map(user -> new UserProfileResponse(
+
+						//로직 -> user id로 찾은 다음, user의 닉네임/한줄소개/팔로우/팔로워/태그/프로필 url 가져오기
+						user.getId(),
+						user.getNickname(),
+						user.getDescription(),
+						user.getFollowerCount(),
+						user.getFollowingCount(),
+						user.getProfileImgUrl()
+
+				))
+				.orElseThrow(() -> new IllegalArgumentException("User not found with ID: " + userId));
 	}
 }
