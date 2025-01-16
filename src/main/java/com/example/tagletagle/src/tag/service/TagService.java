@@ -20,7 +20,7 @@ public class TagService {
      * @return List<TagResponse> 최근 사용한 태그 목록
      */
     public List<TagResponse> getRecentTags(){
-        List<TagEntity> recentTags = tagRepository.findTop10ByOrderbyLastUsedDesc();
+        List<TagEntity> recentTags = tagRepository.findTop10ByOrderByUpdateAtDesc();
 
         // Entity를 DTO로 변환
         return recentTags.stream()
